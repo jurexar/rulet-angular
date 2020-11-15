@@ -1,0 +1,67 @@
+<nav class="navbar navbar-bar bg-primary">
+  <a style="text-align: center;" class="navbar-brand" style="color: rgb(255, 255, 255);">
+    RULETA
+  </a>
+</nav>
+<div class="container"><div class="col-md-16 mt-4" style="text-align: center;">
+  <p style="color: rgb(255, 255, 255);"> Los jugadores realizan sus apuestas faltando 30 segundos para iniciar el juego, al llegar a 0 se establece el resultado de la ruleta y se realizan los pagos. Los datos: nombre y dinero total de los jugadores pueden ser modificados seleccionadolos  y tambien se pueden agregar nuevos jugadores  </p>
+</div>
+  <div class="col-md-16 mt-1" style="text-align: center;">
+    <p style="color: rgb(255, 255, 255);"> {{Min}}: {{dec}}{{seg}} </p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mt-4">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action">
+          <span class="badge badge-primary"> Id </span> Nombre - DineroTotal - Color - Apuesta
+        </li>
+      </ul>
+      <ul class="list-group">
+        <li
+          *ngFor="let player of playerArray"
+          class="list-group-item list-group-item-action"
+          (click)="editar(player)"
+          [class.active]="player == selectedplayer">
+          <span class="badge badge-primary"> {{player.id}} </span> {{ player.name }} - {{ player.Money}} - {{player.color}} - {{player.Bet}}
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-tittle">
+
+            Ingresa un Jugador
+
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedplayer.name" placeholder="Ingresa un nombre" class="form-control" >
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedplayer.Money" placeholder="Inserta valor" class="form-control" >
+          </div>
+          <button (click)="add()" class="btn btn-primary">
+            Ingresar
+          </button>
+          <button
+            *ngIf="selectedplayer.id != 0"
+            (click)="delete()" 
+            class="btn btn-danger">
+            Borrar
+          </button>
+        </div>
+
+      </div>
+      <div>
+        <button
+            (click)="prueba()" 
+            class="btn btn-danger mt-4">
+            prueba {{resultado}}
+        </button>
+      </div>
+    </div>
+    <div>
+       <p  style="color: rgb(255, 255, 255);"> Último Resultado: {{resultado}} </p><img [src]="'assets/ruletta.jpg'" alt="image" >
+     
+    </div>
+  </div>
+</div>
+
